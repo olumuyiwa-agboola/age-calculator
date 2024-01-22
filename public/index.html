@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/htmx.org@1.9.10"
+        integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous">
+        </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link href="./output.css" rel="stylesheet">
+    <title>Age Calculator</title>
+</head>
+
+<body class="flex items-center justify-center bg-blue-500 h-screen">
+    <div class="bg-white border rounded-2xl">
+        <h1 class="text-center text-blue-600 font-bold mt-4">
+            Age Calculator
+        </h1>
+
+        <form hx-post="/age" hx-target="#result" hx-trigger="submit">
+            <div class="flex flex-row items-center justify-center p-4">
+                <input id="datepicker" class="border-2 border-gray-300 rounded px-3 py-2 w-56" type="date"
+                    name="birthdate" placeholder="Select date of birth" required>
+                <button id="button" type="submit"
+                    class="text-blue-600 text-justify shadow-xl outline outline-1 outline-blue-600 hover:bg-blue-600 hover:text-white font-medium rounded p-3 ml-1 w-20 h-11">Submit</button>
+            </div>
+        </form>
+
+        <div class="pl-3 pb-4 font-bold text-[32px] text-blue-950" id="result">
+            <p><i>-- years</i></p>
+            <p><i>-- months</i></p>
+            <p><i>-- days</i></p>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    flatpickr("#datepicker", {
+        altInput: true,
+        altFormat: "F j, Y",
+        dateFormat: "Y-m-d",
+        maxDate: "today"
+    });
+</script>
+
+</html>
